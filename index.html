@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlphaVision Pro — AI Charting Terminal</title>
+  <meta name="description" content="Professional AI-powered trading terminal with real-time crypto, gold, and forex charts. SMC & ICT analysis with instant buy/sell signals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LANDING PAGE VIEW
+     ============================================================ -->
+<div id="view-landing" class="hidden">
+  <!-- Landing Nav -->
+  <nav class="land-nav">
+    <div class="land-nav-left">
+      <div class="land-logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#2962FF"/>
+          <path d="M8 20L13 14L18 17L24 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="10" r="2" fill="#26C6DA"/>
+        </svg>
+        <span class="land-logo-text">AlphaVision <span class="land-logo-pro">Pro</span></span>
+      </div>
+      <div class="land-nav-links">
+        <a href="#" class="land-nav-link">Products</a>
+        <a href="#" class="land-nav-link">Markets</a>
+        <a href="#" class="land-nav-link">Screener</a>
+        <a href="#" class="land-nav-link active">Charts</a>
+        <a href="#" class="land-nav-link">Community</a>
+        <a href="#" class="land-nav-link">Pricing</a>
+      </div>
+    </div>
+    <div class="land-nav-right">
+      <button class="land-btn-outline" id="btn-landing-login">Sign In</button>
+      <button class="land-btn-primary" id="btn-landing-signup">Get Started — Free</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="land-hero">
+    <div class="land-hero-badge">🚀 AI-Powered SMC &amp; ICT Analysis</div>
+    <h1 class="land-hero-title">
+      Chart. Analyze.<br>
+      <span class="land-hero-gradient">Trade Smarter.</span>
+    </h1>
+    <p class="land-hero-sub">
+      Professional-grade charting with real-time AI signals for Crypto, Gold &amp; 20+ Forex pairs.<br>
+      Smart Money Concepts, ICT patterns, and instant Entry/Exit alerts.
+    </p>
+    <div class="land-hero-btns">
+      <button class="land-btn-primary land-btn-lg" id="btn-hero-launch">Launch Chart Terminal</button>
+      <button class="land-btn-ghost land-btn-lg">Watch Demo</button>
+    </div>
+    <div class="land-hero-stats">
+      <div class="land-stat"><span class="land-stat-val">50+</span><span class="land-stat-label">Assets</span></div>
+      <div class="land-stat-divider"></div>
+      <div class="land-stat"><span class="land-stat-val">Real-time</span><span class="land-stat-label">Price Data</span></div>
+      <div class="land-stat-divider"></div>
+      <div class="land-stat"><span class="land-stat-val">AI</span><span class="land-stat-label">Smart Signals</span></div>
+      <div class="land-stat-divider"></div>
+      <div class="land-stat"><span class="land-stat-val">Free</span><span class="land-stat-label">To Start</span></div>
+    </div>
+  </section>
+
+  <!-- Ticker Tape -->
+  <div class="land-ticker-wrap">
+    <div class="land-ticker-inner" id="ticker-tape-land">
+      <div class="ticker-item"><span class="ticker-sym">BTC/USDT</span><span class="ticker-price" id="lt-BTCUSDT">—</span><span class="ticker-chg pos" id="lc-BTCUSDT">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">ETH/USDT</span><span class="ticker-price" id="lt-ETHUSDT">—</span><span class="ticker-chg pos" id="lc-ETHUSDT">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">GOLD</span><span class="ticker-price" id="lt-XAUUSDT">—</span><span class="ticker-chg" id="lc-XAUUSDT">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">EUR/USD</span><span class="ticker-price" id="lt-EURUSD">—</span><span class="ticker-chg" id="lc-EURUSD">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">GBP/USD</span><span class="ticker-price" id="lt-GBPUSD">—</span><span class="ticker-chg" id="lc-GBPUSD">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">SOL/USDT</span><span class="ticker-price" id="lt-SOLUSDT">—</span><span class="ticker-chg pos" id="lc-SOLUSDT">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">XRP/USDT</span><span class="ticker-price" id="lt-XRPUSDT">—</span><span class="ticker-chg" id="lc-XRPUSDT">—</span></div>
+      <div class="ticker-item"><span class="ticker-sym">BNB/USDT</span><span class="ticker-price" id="lt-BNBUSDT">—</span><span class="ticker-chg" id="lc-BNBUSDT">—</span></div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="land-features">
+    <div class="land-feature-card">
+      <div class="land-feature-icon">📊</div>
+      <h3>Real-Time Charts</h3>
+      <p>Live OHLCV candlestick charts with professional tools. Crypto, Forex, Gold and more.</p>
+    </div>
+    <div class="land-feature-card">
+      <div class="land-feature-icon">🤖</div>
+      <h3>AI Smart Signals</h3>
+      <p>SMC, ICT, Order Blocks &amp; Liquidity zones detected automatically. Instant BUY/SELL alerts.</p>
+    </div>
+    <div class="land-feature-card">
+      <div class="land-feature-icon">💼</div>
+      <h3>Paper Trading</h3>
+      <p>Practice with virtual $10,000. Track P&amp;L, wins, losses — risk-free before going live.</p>
+    </div>
+    <div class="land-feature-card">
+      <div class="land-feature-icon">⚡</div>
+      <h3>Fast &amp; Reliable</h3>
+      <p>Sub-millisecond AI scan engine. Works on any device, no install required.</p>
+    </div>
+  </section>
+
+  <!-- Auth Modal -->
+  <div class="land-modal-overlay hidden" id="auth-modal-overlay">
+    <div class="land-modal" id="auth-modal">
+      <button class="land-modal-close" id="auth-modal-close">✕</button>
+      <div class="land-modal-tabs">
+        <button class="land-modal-tab active" id="tab-login">Sign In</button>
+        <button class="land-modal-tab" id="tab-signup">Sign Up</button>
+      </div>
+      <!-- Login Form -->
+      <div id="form-login" class="land-form">
+        <h2 class="land-form-title">Welcome back</h2>
+        <p class="land-form-sub">Sign in to your AlphaVision account</p>
+        <div class="land-form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="you@example.com" class="land-input">
+        </div>
+        <div class="land-form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" class="land-input">
+        </div>
+        <button class="land-btn-primary land-btn-full" id="btn-auth-login">Sign In</button>
+        <p class="land-form-switch">No account? <a href="#" id="switch-to-signup">Create one free</a></p>
+      </div>
+      <!-- Signup Form -->
+      <div id="form-signup" class="land-form hidden">
+        <h2 class="land-form-title">Create account</h2>
+        <p class="land-form-sub">Start trading smarter — 100% free</p>
+        <div class="land-form-group">
+          <label>Full Name</label>
+          <input type="text" id="signup-name" placeholder="Your Name" class="land-input">
+        </div>
+        <div class="land-form-group">
+          <label>Email</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" class="land-input">
+        </div>
+        <div class="land-form-group">
+          <label>Password</label>
+          <input type="password" id="signup-password" placeholder="Min 6 characters" class="land-input">
+        </div>
+        <button class="land-btn-primary land-btn-full" id="btn-auth-signup">Create Account</button>
+        <p class="land-form-switch">Already have an account? <a href="#" id="switch-to-login">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TERMINAL VIEW — TradingView Exact Clone Layout
+     ============================================================ -->
+<div id="view-terminal">
+
+  <!-- ╔══════════════════════════════════════════════╗
+       ║  TOP MENU BAR (same as TradingView exactly) ║
+       ╚══════════════════════════════════════════════╝ -->
+  <div class="tv-header" id="tv-topbar">
+
+    <!-- LEFT: Logo + main nav -->
+    <div class="tv-header-left">
+      <!-- Logo -->
+      <button class="tv-logo-btn" id="btn-go-landing" title="Home">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#2962FF"/>
+          <path d="M8 20L13 14L18 17L24 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="10" r="2" fill="#26C6DA"/>
+        </svg>
+      </button>
+
+      <!-- Symbol search / name -->
+      <div class="tv-header-symbol-btn" id="symbol-search-trigger">
+        <div class="tv-symbol-name">
+          <span class="tv-sym-exchange">BINANCE</span>
+          <span class="tv-sym-pair" id="current-symbol-text">BTC/USDT</span>
+        </div>
+        <div class="tv-symbol-meta">
+          <span class="tv-sym-type" id="current-market-text">Crypto</span>
+        </div>
+        <svg class="tv-sym-arrow" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
+
+      <!-- Symbol dropdown -->
+      <div class="tv-symbol-dropdown hidden" id="symbol-dropdown">
+        <div class="tv-dd-search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="symbol-dd-search" placeholder="Search symbol..." class="tv-dd-search-input">
+        </div>
+        <div class="tv-dd-tabs">
+          <button class="tv-dd-tab active" data-filter="ALL">All</button>
+          <button class="tv-dd-tab" data-filter="CRYPTO">Crypto</button>
+          <button class="tv-dd-tab" data-filter="FOREX">Forex</button>
+          <button class="tv-dd-tab" data-filter="COMMODITY">Metals</button>
+        </div>
+        <div class="tv-dd-list" id="symbol-dd-list"></div>
+      </div>
+
+      <!-- Timeframe buttons -->
+      <div class="tv-timeframes" id="timeframe-btns">
+        <button class="tv-tf-btn" data-tf="1m">1m</button>
+        <button class="tv-tf-btn" data-tf="5m">5m</button>
+        <button class="tv-tf-btn active" data-tf="15m">15m</button>
+        <button class="tv-tf-btn" data-tf="1h">1h</button>
+        <button class="tv-tf-btn" data-tf="4h">4h</button>
+        <button class="tv-tf-btn" data-tf="1d">1D</button>
+        <button class="tv-tf-btn" data-tf="1w">1W</button>
+      </div>
+
+      <!-- Chart type -->
+      <div class="tv-chart-type-group">
+        <button class="tv-icon-btn active" id="btn-chart-candle" title="Candlestick">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="4" y="8" width="5" height="9" rx="1"/>
+            <line x1="6.5" y1="4" x2="6.5" y2="8"/>
+            <line x1="6.5" y1="17" x2="6.5" y2="21"/>
+            <rect x="15" y="5" width="5" height="11" rx="1"/>
+            <line x1="17.5" y1="2" x2="17.5" y2="5"/>
+            <line x1="17.5" y1="16" x2="17.5" y2="21"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Indicators button + dropdown -->
+      <div class="tv-ind-wrap" id="tv-ind-wrap">
+        <button class="tv-indicators-btn" id="btn-indicators">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Indicators
+        </button>
+        <div class="tv-ind-dropdown hidden" id="indicators-dropdown">
+          <div class="tv-ind-title">Indicators &amp; Tools</div>
+          <div class="tv-ind-item">
+            <div class="tv-ind-info">
+              <span class="tv-ind-dot" style="background:#38bdf8"></span>
+              <span class="tv-ind-label">EMA 20 / 50</span>
+            </div>
+            <button class="tv-ind-toggle active" id="toggle-ema" data-on="true">ON</button>
+          </div>
+          <div class="tv-ind-item">
+            <div class="tv-ind-info">
+              <span class="tv-ind-dot" style="background:#c084fc"></span>
+              <span class="tv-ind-label">RSI (14)</span>
+            </div>
+            <button class="tv-ind-toggle active" id="toggle-rsi" data-on="true">ON</button>
+          </div>
+          <div class="tv-ind-item">
+            <div class="tv-ind-info">
+              <span class="tv-ind-dot" style="background:#089981"></span>
+              <span class="tv-ind-label">S/R Levels</span>
+            </div>
+            <button class="tv-ind-toggle active" id="toggle-sr" data-on="true">ON</button>
+          </div>
+          <div class="tv-ind-item">
+            <div class="tv-ind-info">
+              <span class="tv-ind-dot" style="background:#f59e0b"></span>
+              <span class="tv-ind-label">SMC Markers</span>
+            </div>
+            <button class="tv-ind-toggle active" id="toggle-smc" data-on="true">ON</button>
+          </div>
+          <div class="tv-ind-item">
+            <div class="tv-ind-info">
+              <span class="tv-ind-dot" style="background:#3b82f6"></span>
+              <span class="tv-ind-label">Trade Levels</span>
+            </div>
+            <button class="tv-ind-toggle active" id="toggle-levels" data-on="true">ON</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: OHLC Legend -->
+    <div class="tv-header-ohlc" id="tv-ohlc-center">
+      <span class="tv-ohlc-sym" id="legend-symbol">BTC/USDT</span>
+      <span class="tv-ohlc-tf" id="legend-tf">15m</span>
+      <span class="tv-ohlc-label">O</span><span class="tv-ohlc-val green" id="legend-open">—</span>
+      <span class="tv-ohlc-label">H</span><span class="tv-ohlc-val green" id="legend-high">—</span>
+      <span class="tv-ohlc-label">L</span><span class="tv-ohlc-val red" id="legend-low">—</span>
+      <span class="tv-ohlc-label">C</span><span class="tv-ohlc-val" id="legend-close">—</span>
+      <span class="tv-ohlc-chg" id="legend-change">—</span>
+    </div>
+
+    <!-- RIGHT: Price + tools + AI signal -->
+    <div class="tv-header-right">
+      <!-- Live Price -->
+      <div class="tv-live-price">
+        <span class="tv-price-val" id="header-price">—</span>
+        <span class="tv-price-chg" id="header-change">—%</span>
+      </div>
+
+      <!-- AI Signal Badge -->
+      <div class="tv-ai-badge" id="header-ai-signal">
+        <span class="tv-ai-dot" id="ai-signal-dot"></span>
+        <span class="tv-ai-text" id="header-ai-text">Scanning…</span>
+      </div>
+
+      <!-- Sound toggle -->
+      <button class="tv-icon-btn" id="sound-btn" title="Sound Alerts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <!-- Screenshot -->
+      <button class="tv-icon-btn" title="Screenshot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </button>
+
+      <!-- Fullscreen -->
+      <button class="tv-icon-btn" title="Fullscreen">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+
+      <!-- Settings -->
+      <button class="tv-icon-btn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+
+      <!-- User account -->
+      <button class="tv-user-btn" id="btn-nav-user">
+        <div class="tv-user-avatar">A</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════╗
+       ║  MAIN WORKSPACE BELOW HEADER                ║
+       ╚══════════════════════════════════════════════╝ -->
+  <div class="tv-workspace">
+
+    <!-- LEFT TOOLBAR (Drawing tools — TradingView left side) -->
+    <div class="tv-left-toolbar" id="tv-left-toolbar">
+      <div class="tv-toolbar-group">
+        <!-- Cursor / Arrow -->
+        <button class="tv-tool-btn active" title="Cursor" id="tool-cursor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3l14 9-7 1-4 7-3-17z"/></svg>
+        </button>
+      </div>
+      <div class="tv-toolbar-divider"></div>
+      <div class="tv-toolbar-group">
+        <!-- Trend Line -->
+        <button class="tv-tool-btn" title="Trend Line" id="tool-trendline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="20" x2="21" y2="4"/><circle cx="3" cy="20" r="2" fill="currentColor"/><circle cx="21" cy="4" r="2" fill="currentColor"/></svg>
+        </button>
+        <!-- Horizontal Line -->
+        <button class="tv-tool-btn" title="Horizontal Line" id="tool-hline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="3" cy="12" r="2" fill="currentColor"/><circle cx="21" cy="12" r="2" fill="currentColor"/></svg>
+        </button>
+        <!-- Rectangle -->
+        <button class="tv-tool-btn" title="Rectangle" id="tool-rect">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="11" rx="1"/></svg>
+        </button>
+        <!-- Fibonacci -->
+        <button class="tv-tool-btn" title="Fibonacci Retracement" id="tool-fib">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="3" y1="19" x2="21" y2="19"/><line x1="5" y1="4" x2="5" y2="21"/></svg>
+        </button>
+      </div>
+      <div class="tv-toolbar-divider"></div>
+      <div class="tv-toolbar-group">
+        <!-- Text -->
+        <button class="tv-tool-btn" title="Text Note" id="tool-text">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        </button>
+        <!-- Emoji / Balloon -->
+        <button class="tv-tool-btn" title="Callout" id="tool-callout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+      </div>
+      <div class="tv-toolbar-divider"></div>
+      <div class="tv-toolbar-group">
+        <!-- Ruler -->
+        <button class="tv-tool-btn" title="Measure" id="tool-measure">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20M12 2v20"/></svg>
+        </button>
+        <!-- Zoom -->
+        <button class="tv-tool-btn" title="Zoom" id="tool-zoom">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </button>
+      </div>
+      <div class="tv-toolbar-divider"></div>
+      <div class="tv-toolbar-group">
+        <!-- Trash (clear drawings) -->
+        <button class="tv-tool-btn tv-tool-danger" title="Clear Drawings" id="tool-clear">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- CHART AREA -->
+    <div class="tv-chart-area">
+
+      <!-- Chart Header (Strategy + AI controls) — inside chart area, like TV's chart header -->
+      <div class="tv-chart-header" id="terminal-top-controls">
+        <div class="tv-chart-header-left">
+          <!-- Strategy filter -->
+          <div class="tv-strategy-group">
+            <span class="tv-strategy-label">AI Strategy:</span>
+            <div class="tv-strategy-tabs" id="strategy-tabs">
+              <button class="tv-strat-tab active" data-strategy="ALL">ALL</button>
+              <button class="tv-strat-tab" data-strategy="SMC">SMC</button>
+              <button class="tv-strat-tab" data-strategy="ICT">ICT</button>
+              <button class="tv-strat-tab" data-strategy="PA">Price Action</button>
+            </div>
+          </div>
+        </div>
+        <div class="tv-chart-header-right">
+          <!-- Scan speed -->
+          <div class="tv-scan-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Scan: <span id="scan-speed-val">—</span>
+          </div>
+          <!-- Rescan button -->
+          <button class="tv-rescan-btn" id="btn-rescan">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+            Rescan AI
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Chart Container -->
+      <div class="tv-charts-wrap" id="tv-charts-wrap">
+        <!-- Main Price Chart -->
+        <div class="tv-main-chart-container" id="tv-main-chart-container">
+          <div id="tv-main-chart"></div>
+        </div>
+        <!-- RSI Sub-chart -->
+        <div class="tv-rsi-divider" id="tv-rsi-divider"></div>
+        <div class="tv-rsi-container" id="tv-rsi-container">
+          <div class="tv-rsi-label">RSI (14)</div>
+          <div id="tv-rsi-chart"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Status Bar -->
+      <div class="tv-status-bar">
+        <div class="tv-status-left">
+          <div class="tv-status-conn" id="conn-dot"></div>
+          <span class="tv-status-text" id="status-text">Connecting…</span>
+          <span class="tv-status-sep">|</span>
+          <span class="tv-status-clock" id="live-clock">00:00:00</span>
+        </div>
+        <div class="tv-status-right">
+          <!-- Bot alert pill -->
+          <div class="tv-bot-pill hidden" id="bot-alert-pill">
+            <span class="tv-bot-dot"></span>
+            <span id="bot-alert-text">AI Alert</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR (TradingView right panel) -->
+    <div class="tv-right-panel" id="tv-right-panel">
+
+      <!-- Panel Tabs (like TradingView's Watchlist / Trade / Ideas tabs) -->
+      <div class="tv-panel-tabs" id="panel-tabs">
+        <button class="tv-panel-tab active" data-panel="watchlist" id="tab-watchlist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="17 3 17 8 12 8"/></svg>
+          Watchlist
+        </button>
+        <button class="tv-panel-tab" data-panel="ai" id="tab-ai">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+          AI Signal
+        </button>
+        <button class="tv-panel-tab" data-panel="trade" id="tab-trade">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Trade
+        </button>
+      </div>
+
+      <!-- ── WATCHLIST PANEL ── -->
+      <div class="tv-panel-body" id="panel-watchlist">
+        <!-- Watchlist filter -->
+        <div class="tv-wl-header">
+          <div class="tv-wl-filter-tabs" id="wl-filter-tabs">
+            <button class="tv-wl-ftab active" data-wlfilter="ALL">All</button>
+            <button class="tv-wl-ftab" data-wlfilter="CRYPTO">Crypto</button>
+            <button class="tv-wl-ftab" data-wlfilter="FOREX">Forex</button>
+            <button class="tv-wl-ftab" data-wlfilter="COMMODITY">Metals</button>
+          </div>
+        </div>
+        <!-- Watchlist items -->
+        <div class="tv-watchlist" id="watchlist-container"></div>
+      </div>
+
+      <!-- ── AI SIGNAL PANEL ── -->
+      <div class="tv-panel-body hidden" id="panel-ai">
+        <!-- AI Action Box -->
+        <div class="tv-ai-card" id="ai-action-box">
+          <div class="tv-ai-card-header">
+            <span class="tv-ai-card-title">AI Analysis</span>
+            <span class="tv-ai-card-sym" id="ai-sym-badge">BTC/USDT</span>
+          </div>
+
+          <!-- Main Signal -->
+          <div class="tv-ai-signal-box">
+            <div class="tv-ai-action" id="action-title">SCANNING…</div>
+            <div class="tv-ai-sub" id="action-subtitle">Analyzing market structure…</div>
+          </div>
+
+          <!-- Confidence bar -->
+          <div class="tv-conf-wrap">
+            <div class="tv-conf-label">
+              <span>Confidence</span>
+              <span id="ai-confidence">—%</span>
+            </div>
+            <div class="tv-conf-track">
+              <div class="tv-conf-fill" id="confidence-bar" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- Trade Levels -->
+          <div class="tv-ai-levels">
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">Entry</span>
+              <span class="tv-level-val" id="ai-entry">—</span>
+            </div>
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">Stop Loss</span>
+              <span class="tv-level-val red" id="ai-sl">—</span>
+            </div>
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">Target 1</span>
+              <span class="tv-level-val green" id="ai-tp1">—</span>
+            </div>
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">Target 2</span>
+              <span class="tv-level-val green" id="ai-tp2">—</span>
+            </div>
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">R:R Ratio</span>
+              <span class="tv-level-val" id="ai-rr-ratio">—</span>
+            </div>
+            <div class="tv-ai-level-row">
+              <span class="tv-level-label">Style</span>
+              <span class="tv-level-val" id="ai-trade-style">—</span>
+            </div>
+          </div>
+
+          <!-- Reasoning -->
+          <div class="tv-ai-reasoning">
+            <div class="tv-ai-reasoning-title">Analysis</div>
+            <p class="tv-ai-reasoning-text" id="ai-reasoning-text">Waiting for data…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TRADE PANEL (Paper Trader) ── -->
+      <div class="tv-panel-body hidden" id="panel-trade">
+        <!-- Paper Trade Controls -->
+        <div class="tv-trade-section">
+          <div class="tv-trade-title">Paper Trading</div>
+
+          <!-- Balance -->
+          <div class="tv-pt-balance">
+            <span class="tv-pt-bal-label">Virtual Balance</span>
+            <span class="tv-pt-bal-val" id="pt-balance">$10,000.00</span>
+          </div>
+
+          <!-- Manual order direction -->
+          <div class="tv-order-direction" id="order-direction-btns">
+            <button class="tv-order-btn buy active" data-dir="BUY" id="btn-manual-buy">BUY</button>
+            <button class="tv-order-btn sell" data-dir="SELL" id="btn-manual-sell">SELL</button>
+          </div>
+
+          <!-- Risk input -->
+          <div class="tv-risk-row">
+            <label class="tv-risk-label">Risk %</label>
+            <input type="number" id="pt-risk-pct" value="2" min="0.5" max="10" step="0.5" class="tv-risk-input">
+          </div>
+
+          <!-- Place order -->
+          <button class="tv-place-order-btn" id="btn-place-order">
+            Place Order
+          </button>
+
+          <!-- Close all -->
+          <button class="tv-close-all-btn" id="btn-close-all">Close All Positions</button>
+        </div>
+
+        <!-- Active positions -->
+        <div class="tv-pt-positions">
+          <div class="tv-pt-pos-title">Open Positions</div>
+          <div id="pt-positions-list" class="tv-pt-pos-list">
+            <div class="tv-pt-empty">No open positions</div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="tv-pt-stats" id="pt-stats">
+          <div class="tv-pt-stat">
+            <span class="tv-pt-stat-label">Total P&amp;L</span>
+            <span class="tv-pt-stat-val" id="pt-pnl">$0.00</span>
+          </div>
+          <div class="tv-pt-stat">
+            <span class="tv-pt-stat-label">Wins / Losses</span>
+            <span class="tv-pt-stat-val" id="pt-wl">0 / 0</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end tv-right-panel -->
+
+  </div><!-- end tv-workspace -->
+
+</div><!-- end view-terminal -->
+
+<!-- Quick notification banner -->
+<div class="tv-quick-banner hidden" id="quick-banner">
+  <span id="banner-title">Alert</span>
+  <span id="banner-body"></span>
+  <button id="banner-close">✕</button>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
